@@ -2,5 +2,154 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
-  "projects": {}
+  "projects": {
+    "dynamic-structure-lib": {
+      "projectType": "library",
+      "root": "projects/dynamic-structure-lib",
+      "sourceRoot": "projects/dynamic-structure-lib/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/dynamic-structure-lib/tsconfig.lib.json",
+            "project": "projects/dynamic-structure-lib/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/dynamic-structure-lib/src/test.ts",
+            "tsConfig": "projects/dynamic-structure-lib/tsconfig.spec.json",
+            "karmaConfig": "projects/dynamic-structure-lib/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/dynamic-structure-lib/tsconfig.lib.json",
+              "projects/dynamic-structure-lib/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "search-app": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/search-app",
+      "sourceRoot": "projects/search-app/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/search-app",
+            "index": "projects/search-app/src/index.html",
+            "main": "projects/search-app/src/main.ts",
+            "polyfills": "projects/search-app/src/polyfills.ts",
+            "tsConfig": "projects/search-app/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "projects/search-app/src/favicon.ico",
+              "projects/search-app/src/assets"
+            ],
+            "styles": [
+              "projects/search-app/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/search-app/src/environments/environment.ts",
+                  "with": "projects/search-app/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "search-app:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "search-app:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "search-app:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/search-app/src/test.ts",
+            "polyfills": "projects/search-app/src/polyfills.ts",
+            "tsConfig": "projects/search-app/tsconfig.spec.json",
+            "karmaConfig": "projects/search-app/karma.conf.js",
+            "assets": [
+              "projects/search-app/src/favicon.ico",
+              "projects/search-app/src/assets"
+            ],
+            "styles": [
+              "projects/search-app/src/styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/search-app/tsconfig.app.json",
+              "projects/search-app/tsconfig.spec.json",
+              "projects/search-app/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/search-app/e2e/protractor.conf.js",
+            "devServerTarget": "search-app:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "search-app:serve:production"
+            }
+          }
+        }
+      }
+    }},
+  "defaultProject": "dynamic-structure-lib"
 }

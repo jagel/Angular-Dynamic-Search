@@ -17,7 +17,15 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "dynamic-structure-lib": [
+        "dist/dynamic-structure-lib"
+      ],
+      "dynamic-structure-lib/*": [
+        "dist/dynamic-structure-lib/*"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
