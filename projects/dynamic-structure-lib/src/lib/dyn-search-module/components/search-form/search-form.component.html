@@ -1,18 +1,16 @@
 <section>
     
-    <button mat-raised-button color="primary" (click)="openDialog()">
+    <button mat-raised-button color="primary" (click)="openDialog()" class="filter-button">
         <mat-icon>tune</mat-icon>&nbsp;
         Agregar Filtro
     </button>
     
-    <div class="chip-items">
+    <div class="chip-items" class="filter-section">
         <mat-chip-list>
-            <mat-chip color="warn" selected>
-                One fish
-                <mat-icon class="close-icon" matChipRemove>cancel</mat-icon>
+            <mat-chip *ngFor="let item of selectedCollection; let i = index" color="warn" selected>
+                <mat-label (click)="openDialog(item)">{{item.displayName}} : <u>{{item.value}}</u></mat-label>
+                <mat-icon class="close-icon" (click)="removeSelection(i)" matChipRemove>cancel</mat-icon>
             </mat-chip>
         </mat-chip-list>
     </div>
 </section>
-filtros
-{{filterSelection | json}}

@@ -2,3 +2,7 @@
     display: flex;
     align-content: space-between;
 }
+
+.dialog-content section{
+    margin: 10px;
+}

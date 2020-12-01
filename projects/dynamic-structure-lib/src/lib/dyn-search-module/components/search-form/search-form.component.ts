@@ -3,6 +3,8 @@ import { FormBuilderService } from '../../../services/form-builder.service';
 import {MatDialog} from '@angular/material/dialog';
 import { DialogFilterComponent } from '../dialog-filter/dialog-filter.component';
 import { iFormSelectionItem } from '../../../definitions/interfaces/iFomSelectionITem.interface';
+import { iSelectedItem } from '../../../definitions/interfaces/iSelectedItem.interface';
+import { debug } from 'console';
 
 @Component({
   selector: 'lib-search-form',
@@ -13,6 +15,7 @@ export class SearchFormComponent implements OnInit {
   @Input() formBuilder : FormBuilderService;
 
   filterSelection : iFormSelectionItem[] = [];
+  selectedCollection : iSelectedItem[] = [];
 
   constructor(private matDialog: MatDialog) { }
 
@@ -20,19 +23,36 @@ export class SearchFormComponent implements OnInit {
     this.filterSelection = this.formBuilder.collectionItems.map(item => Object.assign({},item,{selected:false} ));
   }
 
-  openDialog(){
+  openDialog(selected :iSelectedItem = null){
     let dialog = this.matDialog.open(DialogFilterComponent, {
       disableClose:true,
-      data: this.filterSelection
+      data: {
+        filterData :this.filterSelection,
+        selected : selected
+      }
     });
 
-    dialog.afterClosed().subscribe(response=>{
-      console.log("response", response);
-    })
+    dialog.afterClosed().subscribe(response =>{
+      if(response){
+        let item = this.filterSelection.find(x=>x.id == response.id);
+        if(!item.selected){
+          item.selected = true;
+          this.selectedCollection.push(response);
+        }else{
+          let selected = this.selectedCollection.find(x=>x.id == response.id);
+          selected.value = response.value;
+        }
+
+      }
+    });
   }
 
-  remove(){
-    
+  removeSelection(index:number){
+    let item = this.filterSelection[index];
+    let filterItem = this.filterSelection.find(x=>x.id == item.id);
+    filterItem.selected = false;
+    this.selectedCollection.splice(index,1);
   }
+
 
 }

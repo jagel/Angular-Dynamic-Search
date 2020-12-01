@@ -4,8 +4,8 @@
     <section>
         <mat-form-field appearance="fill">
             <mat-label>Campo</mat-label>
-            <mat-select (selectionChange)="optionChaged($event)">
-              <mat-option *ngFor="let item of data" [value]="item">
+            <mat-select [formControl]="selectOption">
+              <mat-option *ngFor="let item of data.filterData" [value]="item">
                 {{item.displayName}}
               </mat-option>
             </mat-select>
@@ -13,7 +13,7 @@
     </section>
 
     <section>
-        <lib-form-selector></lib-form-selector>
+        <lib-form-selector [selectedItem]="optionSelected" [value]="valueSelected" (formOutput)="setSelectedValue($event)"></lib-form-selector>
     </section>
 
     <section>
@@ -22,6 +22,6 @@
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close cdkFocusInitial>Agregar</button>
   <button mat-button (click)="closeDialog()">Cancelar</button>
+  <button mat-button (click)="addFilter()" [disabled]="!this.valueData">{{update ? 'Actualizar' : 'Agregar'}}</button>
 </mat-dialog-actions>

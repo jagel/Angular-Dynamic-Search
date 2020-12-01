@@ -13,6 +13,7 @@ import { SearchAndDisplayComponent } from './components/search-and-display/searc
 import { DialogFilterComponent } from './components/dialog-filter/dialog-filter.component';
 import { MatFormFieldModule, MatInputModule, MatSelectModule } from '@angular/material';
 import { DynSearchComponentsModule } from '../dyn-search-components/dyn-search-components.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { DynSearchComponentsModule } from '../dyn-search-components/dyn-search-c
     MatIconModule,
     MatChipsModule,
     MatDialogModule,
-
+    ReactiveFormsModule,
+    
     DynSearchComponentsModule,
   ],
   exports : [

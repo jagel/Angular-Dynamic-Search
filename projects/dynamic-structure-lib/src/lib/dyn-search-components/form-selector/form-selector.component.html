@@ -1,1 +1,17 @@
-<p>form-selector works!</p>
+<section *ngIf="selectedItem" [ngSwitch]="selectedItem.format">
+    <div *ngSwitchCase="formTypes.Text">
+        <mat-form-field >
+            <mat-label>{{selectedItem.displayName}}</mat-label>
+            <input matInput [placeholder]="selectedItem.displayName" [formControl]="formItem">
+          </mat-form-field>
+    </div>
+    <div *ngSwitchCase="formTypes.Boolean">
+        DropDown
+    </div>
+</section>
+
+<section *ngIf="!selectedItem">
+    <mat-form-field>
+        <input matInput disabled>
+      </mat-form-field>
+</section>
