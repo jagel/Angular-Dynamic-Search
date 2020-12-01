@@ -1,1 +1,7 @@
-<p>search-and-dsplay works!</p>
+<mat-card>
+    <lib-search-form [formBuilder]="formBuilder" ></lib-search-form>
+</mat-card>
+
+<mat-card>
+    <lib-dyn-table [formBuilder]="formBuilder" [data]="[{name:'hola',description:'mundo'}]"></lib-dyn-table>
+</mat-card>

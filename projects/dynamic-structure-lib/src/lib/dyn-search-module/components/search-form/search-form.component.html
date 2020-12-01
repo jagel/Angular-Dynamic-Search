@@ -1,9 +1,15 @@
 <section>
+    <div class="button-section">
+        <button mat-raised-button color="primary" (click)="openDialog()" class="filter-button">
+            <mat-icon>tune</mat-icon>&nbsp;
+            Agregar Filtro
+        </button>
+        <button mat-raised-button color="warn" (click)="openDialog()" class="filter-button">
+            <mat-icon>search</mat-icon>&nbsp;
+            Buscar
+        </button>
+    </div>
     
-    <button mat-raised-button color="primary" (click)="openDialog()" class="filter-button">
-        <mat-icon>tune</mat-icon>&nbsp;
-        Agregar Filtro
-    </button>
     
     <div class="chip-items" class="filter-section">
         <mat-chip-list>

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilderService } from '../../../services/form-builder.service';
 
 @Component({
   selector: 'lib-search-and-display',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./search-and-display.component.css']
 })
 export class SearchAndDisplayComponent implements OnInit {
+  @Input() formBuilder : FormBuilderService;
 
   constructor() { }
 

@@ -14,6 +14,7 @@ import { DialogFilterComponent } from './components/dialog-filter/dialog-filter.
 import { MatFormFieldModule, MatInputModule, MatSelectModule } from '@angular/material';
 import { DynSearchComponentsModule } from '../dyn-search-components/dyn-search-components.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import {MatCardModule} from '@angular/material/card';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatChipsModule,
     MatDialogModule,
     ReactiveFormsModule,
+    MatCardModule,
     
     DynSearchComponentsModule,
   ],
