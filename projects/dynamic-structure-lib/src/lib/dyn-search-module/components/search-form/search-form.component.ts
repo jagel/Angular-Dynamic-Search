@@ -50,9 +50,8 @@ export class SearchFormComponent implements OnInit {
   }
 
   removeSelection(index:number){
-    let item = this.filterSelection[index];
-    let filterItem = this.filterSelection.find(x=>x.id == item.id);
-    filterItem.selected = false;
+    let id  = this.selectedCollection[index].id
+    this.filterSelection.find(x=>x.id == id).selected = false;
     this.selectedCollection.splice(index,1);
   }
 

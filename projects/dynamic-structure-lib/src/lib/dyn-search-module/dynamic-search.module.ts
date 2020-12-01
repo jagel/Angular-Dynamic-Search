@@ -11,7 +11,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { SearchFormComponent } from './components/search-form/search-form.component';
 import { SearchAndDisplayComponent } from './components/search-and-display/search-and-display.component';
 import { DialogFilterComponent } from './components/dialog-filter/dialog-filter.component';
-import { MatFormFieldModule, MatInputModule, MatSelectModule } from '@angular/material';
+import { MatFormFieldModule, MatInputModule, MatPaginatorModule, MatSelectModule } from '@angular/material';
 import { DynSearchComponentsModule } from '../dyn-search-components/dyn-search-components.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatCardModule} from '@angular/material/card';
@@ -38,6 +38,7 @@ import {MatMenuModule} from '@angular/material/menu';
     ReactiveFormsModule,
     MatCardModule,
     MatMenuModule,
+    MatPaginatorModule,
     
     DynSearchComponentsModule,
   ],

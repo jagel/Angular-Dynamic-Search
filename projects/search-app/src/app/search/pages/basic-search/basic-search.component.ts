@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { BaseItem } from 'projects/dynamic-structure-lib/src/lib/definitions/models/baseItem.model';
 import { FormBuilderService, iAction } from 'projects/dynamic-structure-lib/src/public-api';
 
 @Component({
@@ -17,9 +16,10 @@ export class BasicSearchComponent implements OnInit {
     this.collectionItems = new FormBuilderService();
     this.collectionItems.addTextItem({ id:'campusName', displayName:'Campus' });
     this.collectionItems.addTextItem({ id:'studentName', displayName:'Nombre' });
-    this.collectionItems.addDateTimeItem({ id:'requestDate', displayName:'Fecha de peticion', });
+    this.collectionItems.addDateTimeItem({ id:'requestDate', displayName:'Fecha de peticion'});
+    this.collectionItems.addCheckBolean({ id:'ignoreTransaction', displayName:'Transaccion' });
 
-
+    
     let sendData : iAction = {
       displayName : 'Enviar',
       icon: 'send',

@@ -1,6 +1,7 @@
 import { eFormTypes } from '../globals.enums';
-import { iDateTimeItem } from '../interfaces/iDateTimeItem.interface';
+import { iDateTimeItem } from '../interfaces/iItems.interfaces';
 import { BaseItem } from './baseItem.model';
+import { DatePipe } from '@angular/common';
 
 export class DateTimeItem extends BaseItem{
 
@@ -19,7 +20,8 @@ export class DateTimeItem extends BaseItem{
     }
 
     recreateDisplay(value: string): string {
-        return value;
+        let result=  new DatePipe('en-US').transform(value,'MM/dd/yyyy, h:mm a')
+        return result;
     }
 
 }

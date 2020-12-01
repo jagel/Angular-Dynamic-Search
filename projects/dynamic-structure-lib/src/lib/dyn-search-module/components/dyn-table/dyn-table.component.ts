@@ -1,5 +1,6 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { BaseItem } from '../../../definitions/models/baseItem.model';
 import { FormBuilderService } from '../../../services/form-builder.service';
 
 @Component({
@@ -14,7 +15,7 @@ export class DynTableComponent implements OnInit, OnChanges{
 
   actionsId = 'actions';
   dataSource : MatTableDataSource<Object> = new MatTableDataSource<Object>();
-
+  collectionItems : BaseItem[];
   constructor(
   ) { }
 
@@ -23,13 +24,14 @@ export class DynTableComponent implements OnInit, OnChanges{
   }
 
   ngOnInit() {
+     this.collectionItems = this.formBuilder.collectionTableItems;
     this.buildColumnsNames();
   }
 
   displayedColumns : string[] = []
 
   buildColumnsNames(){
-    this.displayedColumns = this.formBuilder.collectionItems
+    this.displayedColumns = this.collectionItems
       .filter(x=>x.visible)
       .sort(x => x.order)
       .map(x=>x.id);
@@ -42,11 +44,16 @@ export class DynTableComponent implements OnInit, OnChanges{
     if(this.actionsId == columnName)
       return 'Acciones';
 
-    return this.formBuilder.collectionItems.find(x=>x.id==columnName).displayName;
+    return this.collectionItems.find(x=>x.id==columnName).displayName;
   }
 
   getData(columnName:string){
     return '';
+  }
+
+  displayData(element:any, column:string){
+      var displayData = this.collectionItems.find(x=>x.id == column).recreateDisplay(element[column]);
+     return displayData;
   }
 
 }
@@ -149,7 +156,7 @@ export const tmpdata =
      "userRequesterId":"gabriela.deleonh@laureate.mx",
      "documentName":"Constancia de alumno no inscrito",
      "userRequesterType":"Admin",
-     "ignoreTransaction":false,
+     "ignoreTransaction":true,
      "additionalData":null,
      "transactionTracker":null
   },

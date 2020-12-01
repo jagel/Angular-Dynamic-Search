@@ -1,5 +1,5 @@
 import { eFormTypes } from '../globals.enums';
-import { iNumberItem } from '../interfaces/iNumberItem.interface';
+import { iNumberItem } from '../interfaces/iItems.interfaces';
 import { BaseItem } from './baseItem.model';
 
 export class NumberItem extends BaseItem{

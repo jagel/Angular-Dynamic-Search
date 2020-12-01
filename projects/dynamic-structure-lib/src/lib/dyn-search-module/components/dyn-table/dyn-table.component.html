@@ -2,12 +2,10 @@
   <table  class="w-100" mat-sort mat-table [dataSource]="dataSource" >
 
     <ng-container *ngFor="let column of  displayedColumns" [matColumnDef]="column">
-      <th mat-header-cell *matHeaderCellDef > {{getTitle(column)}} </th>
+      <th class="th-header" mat-header-cell *matHeaderCellDef > {{getTitle(column)}} </th>
       <td mat-cell *matCellDef="let element" [class]="column != actionsId ? '':'action-td'">
-        <section *ngIf="column != actionsId">
-          {{element[column] }}
-        </section>
-        <section *ngIf="column == actionsId" >
+        <section class="margin-5" *ngIf="column != actionsId" [innerHTML]="displayData(element, column)"></section>
+        <section class="margin-5" *ngIf="column == actionsId" >
           <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
             <mat-icon>more_vert</mat-icon>
           </button>
@@ -24,4 +22,9 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
+
+  <mat-paginator [length]="100"
+              [pageSize]="10"
+              [pageSizeOptions]="[5, 10, 25, 100]">
+</mat-paginator>
 </section>

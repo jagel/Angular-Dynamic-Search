@@ -1,5 +1,5 @@
 import { eFormTypes } from '../globals.enums';
-import { iTextItem } from '../interfaces/iTextItem.interface';
+import { iTextItem } from '../interfaces/iItems.interfaces';
 import { BaseItem } from './baseItem.model';
 
 export class TextItem extends BaseItem{

@@ -9,7 +9,7 @@ export abstract class BaseItem implements iBaseItem{
     enableToBeFiltered:boolean;
     visible:boolean;
     order:number;
-    additionalValidation:any[];
+    additionalValidation:any;
 
     abstract recreateDisplay(value:any): string;
 

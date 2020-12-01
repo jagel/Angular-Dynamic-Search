@@ -6,7 +6,13 @@
           </mat-form-field>
     </div>
     <div *ngSwitchCase="formTypes.Boolean">
-        DropDown
+        <mat-form-field appearance="fill">
+            <mat-label>Seleccione una opcion</mat-label>
+            <mat-select [formControl]="formItem">
+              <mat-option [value]="true">Activo (True)</mat-option>
+              <mat-option [value]="false">Inactivo (False)</mat-option>
+            </mat-select>
+          </mat-form-field>
     </div>
     <div *ngSwitchCase="formTypes.Numeric">
         <mat-form-field >

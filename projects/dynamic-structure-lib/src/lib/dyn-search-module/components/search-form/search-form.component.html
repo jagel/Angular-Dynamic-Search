@@ -12,6 +12,9 @@
     
     
     <div class="chip-items" class="filter-section">
+        <div class="filter-title">
+            Filtros aplicados
+        </div>
         <mat-chip-list>
             <mat-chip *ngFor="let item of selectedCollection; let i = index" color="warn" selected>
                 <mat-label (click)="openDialog(item)">{{item.displayName}} : <u>{{item.value}}</u></mat-label>
@@ -20,3 +23,7 @@
         </mat-chip-list>
     </div>
 </section>
+
+<!-- <ul>
+    <li *ngFor="let item of this.filterSelection">{{item|json}}</li>
+</ul> -->

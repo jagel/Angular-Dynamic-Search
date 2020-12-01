@@ -5,3 +5,23 @@
 .action-td{
     width: 5%;
 }
+
+.margin-5{
+margin: 5px;
+}
+
+.th-header{
+    background-color: #2b3657;
+    color: #fff;
+    font-size: 14px;
+}
+
+tr:nth-child(even){
+    background-color: #f6f9ff;
+}
+
+
+tr:hover {
+    background-color: rgb(218, 225, 255);
+    cursor: pointer;
+}
