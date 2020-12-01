@@ -10,6 +10,8 @@ import { iFormSelectionItem } from '../../../definitions/interfaces/iFomSelectio
 })
 export class DialogFilterComponent implements OnInit {
 
+  optionSelected : iFormSelectionItem;
+
   constructor(
       private dialogRef: MatDialogRef<DialogFilterComponent>,
       @Inject(MAT_DIALOG_DATA) public data:iFormSelectionItem[]
@@ -19,7 +21,7 @@ export class DialogFilterComponent implements OnInit {
   }
 
   optionChaged($event){
-    console.log($event);
+    this.optionSelected = $event.value;
   }
 
   closeDialog(){
