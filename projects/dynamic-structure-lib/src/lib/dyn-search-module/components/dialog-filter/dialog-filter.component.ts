@@ -32,10 +32,13 @@ export class DialogFilterComponent implements OnInit {
       this.update = true;
       this.optionSelected = this.data.filterData.find(x=>x.id ==this.data.selected.id);
       this.selectOption = new FormControl(this.optionSelected);
-      this.valueSelected = this.data.selected.value
+      this.valueSelected = this.data.selected.value;
+      this.data.filterData = [this.optionSelected];
     }
     else{
       this.selectOption = new FormControl('');
+      this.data.filterData = this.data.filterData.filter(x=>!x.selected)
+
     }
 
     this.selectOption.valueChanges.subscribe(selected => {
