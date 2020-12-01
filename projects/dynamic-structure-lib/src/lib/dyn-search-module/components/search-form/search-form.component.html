@@ -1,0 +1,18 @@
+<section>
+    
+    <button mat-raised-button color="primary" (click)="openDialog()">
+        <mat-icon>tune</mat-icon>&nbsp;
+        Agregar Filtro
+    </button>
+    
+    <div class="chip-items">
+        <mat-chip-list>
+            <mat-chip color="warn" selected>
+                One fish
+                <mat-icon class="close-icon" matChipRemove>cancel</mat-icon>
+            </mat-chip>
+        </mat-chip-list>
+    </div>
+</section>
+filtros
+{{filterSelection | json}}

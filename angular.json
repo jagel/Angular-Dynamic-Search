@@ -40,7 +40,11 @@
     },
     "search-app": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
       "root": "projects/search-app",
       "sourceRoot": "projects/search-app/src",
       "prefix": "app",
@@ -59,7 +63,7 @@
               "projects/search-app/src/assets"
             ],
             "styles": [
-              "projects/search-app/src/styles.css"
+              "projects/search-app/src/styles.scss"
             ],
             "scripts": []
           },
@@ -119,7 +123,7 @@
               "projects/search-app/src/assets"
             ],
             "styles": [
-              "projects/search-app/src/styles.css"
+              "projects/search-app/src/styles.scss"
             ],
             "scripts": []
           }
@@ -150,6 +154,7 @@
           }
         }
       }
-    }},
+    }
+    },
   "defaultProject": "dynamic-structure-lib"
 }

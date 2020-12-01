@@ -1,8 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DynamicStructureLibModule } from 'projects/dynamic-structure-lib/src/public-api';
+import { SearchModule } from './search/search.module';
 
 @NgModule({
   declarations: [
@@ -10,7 +12,10 @@ import { DynamicStructureLibModule } from 'projects/dynamic-structure-lib/src/pu
   ],
   imports: [
     BrowserModule,
-    DynamicStructureLibModule
+    BrowserAnimationsModule,
+    
+    AppRoutingModule,
+    SearchModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -2,6 +2,8 @@
  * Public API Surface of dynamic-structure-lib
  */
 
-export * from './lib/dynamic-structure-lib.service';
-export * from './lib/dynamic-structure-lib.component';
-export * from './lib/dynamic-structure-lib.module';
+export * from './lib/dyn-search-module/components/dyn-table/dyn-table.component';
+export * from './lib/dyn-search-module/dynamic-search.module';
+
+export * from './lib/services/form-builder.service'
+export * from './lib/services/bucket-form.service'

@@ -1,0 +1,23 @@
+<h2 mat-dialog-title>Agregar filtro</h2>
+
+<mat-dialog-content class="dialog-content">
+    <section>
+        <mat-form-field appearance="fill">
+            <mat-label>Campo</mat-label>
+            <mat-select (selectionChange)="optionChaged($event)">
+              <mat-option *ngFor="let item of data" [value]="item">
+                {{item.displayName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+    </section>
+
+    <section>
+
+    </section>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close cdkFocusInitial>Agregar</button>
+  <button mat-button (click)="closeDialog()">Cancelar</button>
+</mat-dialog-actions>
