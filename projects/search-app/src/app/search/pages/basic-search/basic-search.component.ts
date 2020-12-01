@@ -11,6 +11,12 @@ export class BasicSearchComponent implements OnInit {
   collectionItems : FormBuilderService;
  
   constructor() { }
+  
+  sendDataAction : iAction = {
+    displayName : 'Enviar',
+    icon: 'send',
+    event: (row) => { console.log('external',row);}
+  }
 
   ngOnInit() {
     this.collectionItems = new FormBuilderService();
@@ -19,13 +25,7 @@ export class BasicSearchComponent implements OnInit {
     this.collectionItems.addDateTimeItem({ id:'requestDate', displayName:'Fecha de peticion'});
     this.collectionItems.addCheckBolean({ id:'ignoreTransaction', displayName:'Transaccion' });
 
-    
-    let sendData : iAction = {
-      displayName : 'Enviar',
-      icon: 'send',
-      event: (row) => { console.log('external',row);}
-    }
-
-    this.collectionItems.addAction(sendData)
+    this.collectionItems.addAction(this.sendDataAction);
+    this.collectionItems.addSearchUlr('http://localhost:3000/transactions');
   }
 }

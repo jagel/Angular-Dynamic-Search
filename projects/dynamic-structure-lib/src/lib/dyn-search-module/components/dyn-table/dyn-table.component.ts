@@ -20,7 +20,7 @@ export class DynTableComponent implements OnInit, OnChanges{
   ) { }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.dataSource = new MatTableDataSource<Object>();
+    this.dataSource = new MatTableDataSource<Object>(this.data);
   }
 
   ngOnInit() {

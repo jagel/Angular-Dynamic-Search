@@ -13,6 +13,8 @@ export class FormBuilderService {
   enableActions : boolean = true;
   actionCollection : iAction[] = [];
   
+  urlConnection : string;
+
   constructor() { }
 
   addTextItem(textItem: iTextItem){
@@ -63,6 +65,10 @@ export class FormBuilderService {
 
   addAction(action : iAction ){
     this.actionCollection.push(action);
+  }
+
+  addSearchUlr(url :string){
+    this.urlConnection = url;
   }
 
 

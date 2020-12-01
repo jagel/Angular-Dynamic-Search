@@ -25,3 +25,9 @@ tr:hover {
     background-color: rgb(218, 225, 255);
     cursor: pointer;
 }
+
+.loading{
+    color : #d1d1d1 !important;
+    cursor: none;
+    background-color: white;
+}

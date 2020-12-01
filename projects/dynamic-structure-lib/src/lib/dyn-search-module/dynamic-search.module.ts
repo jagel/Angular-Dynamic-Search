@@ -16,6 +16,8 @@ import { DynSearchComponentsModule } from '../dyn-search-components/dyn-search-c
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatCardModule} from '@angular/material/card';
 import {MatMenuModule} from '@angular/material/menu';
+import { HttpClientModule } from '@angular/common/http';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 
 @NgModule({
@@ -39,7 +41,11 @@ import {MatMenuModule} from '@angular/material/menu';
     MatCardModule,
     MatMenuModule,
     MatPaginatorModule,
+    MatProgressBarModule,
     
+    HttpClientModule,
+
+
     DynSearchComponentsModule,
   ],
   exports : [

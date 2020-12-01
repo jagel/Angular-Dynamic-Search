@@ -9,9 +9,14 @@ import { FormBuilderService } from '../../../services/form-builder.service';
 export class SearchAndDisplayComponent implements OnInit {
   @Input() formBuilder : FormBuilderService;
 
+  data :any;
   constructor() { }
 
   ngOnInit() {
+  }
+
+  retrieveData(data){
+    this.data = data;
   }
 
 }

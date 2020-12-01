@@ -1,7 +1,10 @@
 <mat-card class="mat-elevation-z8">
-    <lib-search-form [formBuilder]="formBuilder" ></lib-search-form>
+    <lib-search-form 
+        [formBuilder]="formBuilder"
+        (dataResult)="retrieveData($event)" ></lib-search-form>
 </mat-card>
 
 <mat-card class="mat-elevation-z8">
-    <lib-dyn-table [formBuilder]="formBuilder" [data]="[{name:'hola',description:'mundo'}]"></lib-dyn-table>
+    <lib-dyn-table 
+        [formBuilder]="formBuilder" [data]="data"></lib-dyn-table>
 </mat-card>
