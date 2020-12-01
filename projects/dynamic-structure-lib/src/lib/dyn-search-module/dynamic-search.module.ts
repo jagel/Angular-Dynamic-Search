@@ -15,6 +15,7 @@ import { MatFormFieldModule, MatInputModule, MatSelectModule } from '@angular/ma
 import { DynSearchComponentsModule } from '../dyn-search-components/dyn-search-components.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatCardModule} from '@angular/material/card';
+import {MatMenuModule} from '@angular/material/menu';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import {MatCardModule} from '@angular/material/card';
     MatDialogModule,
     ReactiveFormsModule,
     MatCardModule,
+    MatMenuModule,
     
     DynSearchComponentsModule,
   ],

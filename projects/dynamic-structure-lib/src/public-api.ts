@@ -7,3 +7,5 @@ export * from './lib/dyn-search-module/dynamic-search.module';
 
 export * from './lib/services/form-builder.service'
 export * from './lib/services/bucket-form.service'
+
+export * from './lib/definitions/interfaces/iAction.interface'

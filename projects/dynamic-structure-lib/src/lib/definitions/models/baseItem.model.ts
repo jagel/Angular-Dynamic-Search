@@ -9,6 +9,7 @@ export abstract class BaseItem implements iBaseItem{
     enableToBeFiltered:boolean;
     visible:boolean;
     order:number;
+    additionalValidation:any[];
 
     abstract recreateDisplay(value:any): string;
 
@@ -19,13 +20,15 @@ export abstract class BaseItem implements iBaseItem{
         enableToBeFiltered? : boolean,
         visible? : boolean,
         order? : number,
+        additionalValidation?:any
     } = {}) {
         this.id = options.id || '';
         this.displayName = options.displayName || options.id;
         this.format = options.format || eFormTypes.Text;
-        this.enableToBeFiltered = options.enableToBeFiltered || false;
-        this.visible = options.visible || true;
+        this.enableToBeFiltered = options.enableToBeFiltered !== false;
+        this.visible = options.visible !== false;
         this.order = this.order ||0;
+        this.additionalValidation = options.additionalValidation || {};
     }
 
 }

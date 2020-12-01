@@ -8,6 +8,18 @@
     <div *ngSwitchCase="formTypes.Boolean">
         DropDown
     </div>
+    <div *ngSwitchCase="formTypes.Numeric">
+        <mat-form-field >
+            <mat-label>{{selectedItem.displayName}}</mat-label>
+            <input type="number" matInput [placeholder]="selectedItem.displayName" [formControl]="formItem">
+          </mat-form-field>
+    </div>
+    <div *ngSwitchCase="formTypes.DateTime">
+        <mat-form-field >
+            <mat-label>{{selectedItem.displayName}}</mat-label>
+            <input type="date" matInput [placeholder]="selectedItem.displayName" [formControl]="formItem">
+          </mat-form-field>
+    </div>
 </section>
 
 <section *ngIf="!selectedItem">

@@ -20,7 +20,9 @@ export class SearchFormComponent implements OnInit {
   constructor(private matDialog: MatDialog) { }
 
   ngOnInit() {
-    this.filterSelection = this.formBuilder.collectionItems.map(item => Object.assign({},item,{selected:false} ));
+    this.filterSelection = this.formBuilder.collectionItems
+      .filter(x=>x.enableToBeFiltered)
+      .map(item => Object.assign({},item,{selected:false} ));
   }
 
   openDialog(selected :iSelectedItem = null){
