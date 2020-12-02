@@ -1,4 +1,6 @@
-<section *ngIf="selectedItem && isSelectorBuilded" [ngSwitch]="selectedItem.format">
+<mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+
+<section *ngIf="selectedItem" [ngSwitch]="selectedItem.format">
     <div *ngSwitchCase="formTypes.Text">
         <mat-form-field >
             <mat-label>{{selectedItem.displayName}}</mat-label>

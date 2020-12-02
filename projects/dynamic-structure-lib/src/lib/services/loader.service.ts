@@ -9,7 +9,7 @@ import { map } from 'rxjs/operators';
 export class LoaderService {
   
   private loader : number = 0;
-  public ObserveLoader: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private observerLoader: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   
   constructor(
   ) { }
@@ -17,18 +17,20 @@ export class LoaderService {
   enableLoader(){
     this.loader ++;
     if(this.loader == 1){
-      this.ObserveLoader.next(true);
+      this.observerLoader.next(true);
     }
   }
 
   disableLoader(){
     this.loader --;
     if(this.loader == 0){
-      this.ObserveLoader.next(false);
+      this.observerLoader.next(false);
     }
   }
 
-
- 
- 
+  loading() : Observable<boolean> {
+    return this.observerLoader.pipe(map(response => {
+      return response;
+    }))
+  }
 }
