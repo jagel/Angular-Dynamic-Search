@@ -14,5 +14,13 @@ export interface iTextItem extends iItem{
 }
 
 export interface iSelectOption extends iItem{
-    endpoint:{url:string, text:string, value:string};
+    endpoint:iSelectOptionEndpoint;
+}
+
+
+
+export interface iSelectOptionEndpoint {
+    url:string;
+    text:string;
+    value:string
 }

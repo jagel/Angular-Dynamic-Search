@@ -9,6 +9,7 @@ export class OptionTextItem extends BaseItem{
             id:options.id,
             displayName:options.displayName,
             format:eFormTypes.Collection,
+            hasCallback:true,
             enableToBeFiltered:options.enableToBeFiltered,
             visible: options.visible,
             order:options.order,

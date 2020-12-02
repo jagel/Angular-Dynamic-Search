@@ -11,6 +11,8 @@ export abstract class BaseItem implements iBaseItem{
     order:number;
     additionalValidation:any;
 
+    hasCallback: boolean;
+
     abstract recreateDisplay(value:any): string;
 
     constructor(options : {
@@ -20,7 +22,8 @@ export abstract class BaseItem implements iBaseItem{
         enableToBeFiltered? : boolean,
         visible? : boolean,
         order? : number,
-        additionalValidation?:any
+        additionalValidation?:any,
+        hasCallback?:boolean
     } = {}) {
         this.id = options.id || '';
         this.displayName = options.displayName || options.id;
@@ -29,6 +32,7 @@ export abstract class BaseItem implements iBaseItem{
         this.visible = options.visible !== false;
         this.order = this.order ||0;
         this.additionalValidation = options.additionalValidation || {};
+        this.hasCallback = !!options.hasCallback;
     }
 
 }

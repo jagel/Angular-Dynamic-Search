@@ -26,6 +26,10 @@
             <input type="date" matInput [placeholder]="selectedItem.displayName" [formControl]="formItem">
           </mat-form-field>
     </div>
+
+    <div *ngSwitchDefault>
+      <label style="color: red;">Metodo no implementado</label>
+    </div>
 </section>
 
 <section *ngIf="!selectedItem">

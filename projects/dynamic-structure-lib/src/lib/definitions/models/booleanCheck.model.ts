@@ -14,6 +14,7 @@ export class BooleanCheckItem extends BaseItem{
             order:options.order
         });
     }
+    
     recreateDisplay(value: boolean): string {
         let icon = value ? 'done_outline' : 'close';
         let display = `<span class="material-icons">${icon}</span>`;
