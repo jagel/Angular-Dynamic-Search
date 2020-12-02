@@ -1,7 +1,6 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { FormBuilderService } from 'projects/dynamic-structure-lib/src/public-api';
 import { iFormSelectionItem } from '../../../definitions/interfaces/iFomSelectionITem.interface';
 import { iSelectedItem } from '../../../definitions/interfaces/iSelectedItem.interface';
 

@@ -31,9 +31,13 @@ export class DynTableComponent implements OnInit, OnChanges{
 
   ngOnInit() {
     this.loadingService.loading().subscribe(response => {
-      setTimeout(() => {
+      if(response)
         this.isLoading = response;
-      },10);
+      else{
+        setTimeout(() => {
+          this.isLoading = response;
+        },10);
+      }
     });
 
      this.collectionItems = this.formBuilder.collectionTableItems;

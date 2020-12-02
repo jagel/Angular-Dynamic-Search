@@ -34,8 +34,14 @@ export class FormSelectorComponent implements OnChanges, OnInit {
 
   ngOnInit(): void {
     this.loadingService.loading().subscribe(response => {
+      if(response)
       this.isLoading = response;
-    })
+    else{
+        setTimeout(() => {
+          this.isLoading = response;
+        },10);
+      }
+    });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
