@@ -1,9 +1,10 @@
 import { iAction } from '../definitions/interfaces/iAction.interface';
-import { iBoolean, iDateTimeItem, iNumberItem,iTextItem } from '../definitions/interfaces/iItems.interfaces';
+import { iBoolean, iDateTimeItem, iNumberItem,iTextItem, iSelectOption } from '../definitions/interfaces/iItems.interfaces';
 import { BaseItem } from '../definitions/models/baseItem.model';
 import { BooleanCheckItem } from '../definitions/models/booleanCheck.model';
 import { DateTimeItem } from '../definitions/models/dateTimeItem.model';
 import { NumberItem } from '../definitions/models/numberItem.model';
+import { OptionTextItem } from '../definitions/models/optionTextItem.model';
 import { TextItem } from '../definitions/models/textItem.model';
 
 export class FormBuilderService {
@@ -51,6 +52,11 @@ export class FormBuilderService {
 
   addCheckBolean(booleanItem :iBoolean){
     let booleanI = new BooleanCheckItem(booleanItem);
+    this.addCollection(booleanI);
+  }
+  
+  addTextByDropDown(textByDropDownItem: iSelectOption){
+    let booleanI = new OptionTextItem(textByDropDownItem);
     this.addCollection(booleanI);
   }
 

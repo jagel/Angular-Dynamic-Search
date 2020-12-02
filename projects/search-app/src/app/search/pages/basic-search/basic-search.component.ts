@@ -20,7 +20,9 @@ export class BasicSearchComponent implements OnInit {
 
   ngOnInit() {
     this.collectionItems = new FormBuilderService();
-    this.collectionItems.addTextItem({ id:'campusName', displayName:'Campus' });
+    this.collectionItems.addTextByDropDown({ id:'campusName', displayName:'Campus',
+      endpoint:{url:'http://localhost:3000/campus',text:'name', value:'value'}} );
+
     this.collectionItems.addTextItem({ id:'studentName', displayName:'Nombre' });
     this.collectionItems.addDateTimeItem({ id:'requestDate', displayName:'Fecha de peticion'});
     this.collectionItems.addCheckBolean({ id:'ignoreTransaction', displayName:'Transaccion' });

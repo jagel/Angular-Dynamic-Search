@@ -12,3 +12,7 @@ export interface iNumberItem extends iItem{
 
 export interface iTextItem extends iItem{
 }
+
+export interface iSelectOption extends iItem{
+    endpoint:{url:string, text:string, value:string};
+}
