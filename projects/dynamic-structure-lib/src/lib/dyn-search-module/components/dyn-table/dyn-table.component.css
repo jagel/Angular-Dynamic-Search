@@ -22,7 +22,7 @@ tr:nth-child(even){
 
 
 tr:hover {
-    background-color: rgb(218, 225, 255);
+    background-color:#e6f1ff;
 }
 
 .loading{
