@@ -4,9 +4,9 @@ import {MatDialog} from '@angular/material/dialog';
 import { DialogFilterComponent } from '../dialog-filter/dialog-filter.component';
 import { iFormSelectionItem } from '../../../definitions/interfaces/iFomSelectionITem.interface';
 import { iSelectedItem } from '../../../definitions/interfaces/iSelectedItem.interface';
-import { debug } from 'console';
-import { HttpClient } from '@angular/common/http';
 import { EventEmitter } from '@angular/core';
+import { BucketFormService } from '../../../services/bucket-form.service';
+import { EndpointService } from '../../../services/endpoint.service';
 
 @Component({
   selector: 'lib-search-form',
@@ -22,7 +22,8 @@ export class SearchFormComponent implements OnInit {
 
   constructor(
     private matDialog: MatDialog,
-    private http: HttpClient
+    private bucketService : BucketFormService,
+    private endpointService : EndpointService
     ) { }
 
   ngOnInit() {
@@ -62,11 +63,13 @@ export class SearchFormComponent implements OnInit {
   }
 
   searchData(){
+    let data = this.bucketService.buildFiltersObject(this.selectedCollection);
+    
     this.dataResult.emit({});
-
-      this.http.get(this.formBuilder.urlConnection).subscribe(response => {
-        this.dataResult.emit(response);
-    });
+    
+    this.endpointService
+      .get(this.formBuilder.urlConnection)
+      .subscribe(result => this.dataResult.emit(result));
   }
 
 

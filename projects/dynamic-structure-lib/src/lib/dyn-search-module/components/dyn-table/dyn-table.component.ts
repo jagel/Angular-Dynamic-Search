@@ -2,6 +2,7 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 import { MatTableDataSource } from '@angular/material/table';
 import { BaseItem } from '../../../definitions/models/baseItem.model';
 import { FormBuilderService } from '../../../services/form-builder.service';
+import { LoaderService } from '../../../services/loader.service';
 
 @Component({
   selector: 'lib-dyn-table',
@@ -17,6 +18,7 @@ export class DynTableComponent implements OnInit, OnChanges{
   dataSource : MatTableDataSource<Object> = new MatTableDataSource<Object>();
   collectionItems : BaseItem[];
   constructor(
+    private loaderService : LoaderService
   ) { }
 
   ngOnChanges(changes: SimpleChanges): void {
