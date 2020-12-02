@@ -17,10 +17,12 @@ export class DynTableComponent implements OnInit, OnChanges{
   actionsId = 'actions';
   dataSource : MatTableDataSource<Object> = new MatTableDataSource<Object>();
   collectionItems : BaseItem[];
+  isLoading : boolean;
 
   constructor(
+    private loadingService : LoaderService
   ) { 
-
+    
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -28,6 +30,12 @@ export class DynTableComponent implements OnInit, OnChanges{
   }
 
   ngOnInit() {
+    this.loadingService.loading().subscribe(response => {
+      setTimeout(() => {
+        this.isLoading = response;
+      },10);
+    });
+
      this.collectionItems = this.formBuilder.collectionTableItems;
     this.buildColumnsNames();
   }

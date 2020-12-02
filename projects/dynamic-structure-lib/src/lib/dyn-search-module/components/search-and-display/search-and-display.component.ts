@@ -18,8 +18,10 @@ export class SearchAndDisplayComponent implements OnInit {
 
 
   ngOnInit() {
-    this.loadingService.ObserveLoader.subscribe(response => {
-      this.isLoading = response
+    this.loadingService.loading().subscribe(response => {
+      setTimeout(() => {
+        this.isLoading = response;
+      },10);
     });
   }
 
