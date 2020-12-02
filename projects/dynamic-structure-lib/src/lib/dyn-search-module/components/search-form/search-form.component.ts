@@ -63,6 +63,7 @@ export class SearchFormComponent implements OnInit {
   }
 
   searchData(){
+    debugger;
     let data = this.bucketService.buildFiltersObject(this.selectedCollection);
     
     this.dataResult.emit({});

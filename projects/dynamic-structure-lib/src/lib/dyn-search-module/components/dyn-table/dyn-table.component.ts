@@ -17,6 +17,7 @@ export class DynTableComponent implements OnInit, OnChanges{
   actionsId = 'actions';
   dataSource : MatTableDataSource<Object> = new MatTableDataSource<Object>();
   collectionItems : BaseItem[];
+  
   constructor(
     private loaderService : LoaderService
   ) { }
