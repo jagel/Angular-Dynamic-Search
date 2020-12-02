@@ -13,9 +13,7 @@ export class OptionTextItem extends BaseItem{
             enableToBeFiltered:options.enableToBeFiltered,
             visible: options.visible,
             order:options.order,
-            additionalValidation : {
-                endpoint : options.endpoint
-            }
+            additionalValidation : options.endpoint
         });
     }
 

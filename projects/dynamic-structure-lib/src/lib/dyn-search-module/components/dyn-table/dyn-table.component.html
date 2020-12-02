@@ -1,5 +1,4 @@
 <section>
-  <mat-progress-bar *ngIf="loaderService.isLoading" mode="indeterminate"></mat-progress-bar><br/>
   <table  class="w-100" mat-sort mat-table [dataSource]="dataSource" >
     <ng-container *ngFor="let column of  displayedColumns" [matColumnDef]="column">
       <th class="th-header" mat-header-cell *matHeaderCellDef > {{getTitle(column)}} </th>

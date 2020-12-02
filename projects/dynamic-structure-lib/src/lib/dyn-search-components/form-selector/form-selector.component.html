@@ -1,4 +1,4 @@
-<section *ngIf="selectedItem" [ngSwitch]="selectedItem.format">
+<section *ngIf="selectedItem && isSelectorBuilded" [ngSwitch]="selectedItem.format">
     <div *ngSwitchCase="formTypes.Text">
         <mat-form-field >
             <mat-label>{{selectedItem.displayName}}</mat-label>
@@ -27,6 +27,17 @@
           </mat-form-field>
     </div>
 
+    <div *ngSwitchCase="formTypes.Collection">
+      <mat-form-field appearance="fill">
+        <mat-label>{{selectedItem.displayName}}</mat-label>
+        <mat-select [formControl]="formItem">
+          <mat-option *ngFor="let item of collectionToItem" [value]="item.value">
+            {{item.text}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
     <div *ngSwitchDefault>
       <label style="color: red;">Metodo no implementado</label>
     </div>
@@ -34,6 +45,7 @@
 
 <section *ngIf="!selectedItem">
     <mat-form-field>
+        <mat-label></mat-label>
         <input matInput disabled>
       </mat-form-field>
 </section>

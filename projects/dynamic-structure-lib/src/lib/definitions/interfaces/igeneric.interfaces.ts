@@ -1,4 +1,4 @@
-export interface selectOption {
+export interface iSelectOption {
     text:string;
     value:any
 }

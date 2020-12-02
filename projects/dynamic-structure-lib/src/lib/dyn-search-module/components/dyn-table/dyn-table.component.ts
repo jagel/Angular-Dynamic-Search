@@ -17,10 +17,11 @@ export class DynTableComponent implements OnInit, OnChanges{
   actionsId = 'actions';
   dataSource : MatTableDataSource<Object> = new MatTableDataSource<Object>();
   collectionItems : BaseItem[];
-  
+
   constructor(
-    private loaderService : LoaderService
-  ) { }
+  ) { 
+
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     this.dataSource = new MatTableDataSource<Object>(this.data);
