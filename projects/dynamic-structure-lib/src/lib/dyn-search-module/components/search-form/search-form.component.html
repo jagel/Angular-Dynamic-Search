@@ -8,7 +8,7 @@
             </button>
 
             <button mat-stroked-button color="default" (click)="clearFilter()" class="filter-button"
-                style="margin-left: 5px;margin-right: 5px;">
+                style="margin-left: 5px;margin-right: 5px;" [disabled]="this.selectedCollection.length == 0">
                 <mat-icon>delete_outline</mat-icon>&nbsp;
                 Limpiar Filtros
             </button>
