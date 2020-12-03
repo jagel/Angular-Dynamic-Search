@@ -1,0 +1,12 @@
+<mat-card class="mat-elevation-z8">
+    <lib-search 
+        [formBuilder]="formBuilder"
+        (dataResult)="retrieveData($event)" >
+    </lib-search>
+</mat-card>
+
+<mat-card class="mat-elevation-z8">
+    <lib-table 
+        [formBuilder]="formBuilder" [data]="data">
+    </lib-table>
+</mat-card>

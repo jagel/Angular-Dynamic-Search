@@ -1,0 +1,27 @@
+<h2 mat-dialog-title>Agregar filtro</h2>
+
+<mat-dialog-content class="dialog-content">
+    <section>
+        <mat-form-field appearance="fill">
+            <mat-label>Seleccione un campo</mat-label>
+            <mat-select [formControl]="selectOption">
+              <mat-option *ngFor="let item of data.filterData" [value]="item">
+                {{item.displayName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+    </section>
+
+    <section>
+        <lib-base-input-selector [selectedItem]="optionSelected" [value]="valueSelected" (formOutput)="setSelectedValue($event)"></lib-base-input-selector>
+    </section>
+
+    <section>
+
+    </section>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="closeDialog()">Cancelar</button>
+  <button mat-button (click)="addFilter()" [disabled]="!this.valueData">{{update ? 'Actualizar' : 'Agregar'}}</button>
+</mat-dialog-actions>

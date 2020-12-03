@@ -11,19 +11,14 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "es2015",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
     "lib": [
       "es2018",
       "dom"
     ],
     "paths": {
-      "dynamic-structure-lib": [
-        "dist/dynamic-structure-lib"
-      ],
-      "dynamic-structure-lib/*": [
-        "dist/dynamic-structure-lib/*"
+      "search-lib": [
+        "dist/search-lib/search-lib",
+        "dist/search-lib"
       ]
     }
   },
