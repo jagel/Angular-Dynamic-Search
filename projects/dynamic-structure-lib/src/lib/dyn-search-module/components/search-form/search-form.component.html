@@ -1,9 +1,19 @@
 <section>
     <div class="button-section">
-        <button mat-raised-button color="primary" (click)="openDialog()" class="filter-button">
-            <mat-icon>tune</mat-icon>&nbsp;
-            Agregar Filtro
-        </button>
+        <div>
+            <button mat-raised-button color="primary" style="margin-left: 5px;margin-right: 5px;"
+             (click)="openDialog()" class="filter-button">
+                <mat-icon>tune</mat-icon>&nbsp;
+                Agregar Filtro
+            </button>
+
+            <button mat-stroked-button color="default" (click)="clearFilter()" class="filter-button"
+                style="margin-left: 5px;margin-right: 5px;">
+                <mat-icon>delete_outline</mat-icon>&nbsp;
+                Limpiar Filtros
+            </button>
+        </div>
+        
         <button mat-raised-button color="warn" (click)="searchData()" class="filter-button">
             <mat-icon>search</mat-icon>&nbsp;
             Buscar

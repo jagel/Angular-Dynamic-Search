@@ -72,5 +72,10 @@ export class SearchFormComponent implements OnInit {
       .subscribe(result => this.dataResult.emit(result));
   }
 
+  clearFilter(){
+    this.selectedCollection = [];
+    this.filterSelection.map(x=>x.selected = false);
+  }
+
 
 }
