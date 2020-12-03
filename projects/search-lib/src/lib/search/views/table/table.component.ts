@@ -1,8 +1,8 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
-import { BuilderFormService } from '../../../services/form/builder-form.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { BaseItem } from '../../../definitions/builders/baseItem.builder';
-import { LoaderService } from 'projects/search-lib/src/public-api';
+import { LoaderService } from '../../../services/behavior/loader.service';
+import { BuilderFormService } from '../../../services/form/builder-form.service';
 
 @Component({
   selector: 'lib-table',

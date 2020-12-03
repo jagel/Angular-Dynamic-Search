@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { LoaderService } from 'projects/search-lib/src/public-api';
 import { catchError, map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { LoaderService } from '../behavior/loader.service';
 
 @Injectable({
   providedIn: 'root'

@@ -49,9 +49,6 @@ import { InputSelectorModule } from '../input-selector/input-selector.module';
     InputSelectorModule
   ],
   exports:[
-    DialogFilterComponent, 
-    TableComponent, 
-    SearchComponent, 
     DisplaySearchComponent
   ]
 })

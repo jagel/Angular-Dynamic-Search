@@ -1,7 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { iFormSelectionItem, iSelectedItem } from 'projects/search-lib/src/public-api';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { iFormSelectionItem } from '../../../definitions/interfaces/iFomSelectionItem.interface';
+import { iSelectedItem } from '../../../definitions/interfaces/iSelectedItem.interface';
 
 @Component({
   selector: 'lib-dialog-filter',

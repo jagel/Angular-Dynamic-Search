@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { BuilderFormService, LoaderService } from 'projects/search-lib/src/public-api';
+import { LoaderService } from '../../../services/behavior/loader.service';
+import { BuilderFormService } from '../../../services/form/builder-form.service';
 
 @Component({
   selector: 'lib-display-search',
@@ -10,7 +11,8 @@ export class DisplaySearchComponent implements OnInit {
   @Input() formBuilder : BuilderFormService;
 
   isLoading : boolean = false;
-  data :any;
+  data :any = {};
+
   constructor(
     public loadingService : LoaderService,
   ) { }

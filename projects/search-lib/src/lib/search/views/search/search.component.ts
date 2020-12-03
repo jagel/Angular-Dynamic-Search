@@ -1,8 +1,11 @@
 import { EventEmitter } from '@angular/core';
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { BucketFormService, EndpointService, iFormSelectionItem, iSelectedItem } from 'projects/search-lib/src/public-api';
+import { iFormSelectionItem } from '../../../definitions/interfaces/iFomSelectionItem.interface';
+import { iSelectedItem } from '../../../definitions/interfaces/iSelectedItem.interface';
+import { BucketFormService } from '../../../services/form/bucket-form.service';
 import { BuilderFormService } from '../../../services/form/builder-form.service';
+import { EndpointService } from '../../../services/http/endpoint.service';
 import { DialogFilterComponent } from '../../components/dialog-filter/dialog-filter.component';
 
 @Component({

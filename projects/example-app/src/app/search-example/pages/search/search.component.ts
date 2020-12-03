@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BuilderFormService, iAction, iSelectOptionEndpoint } from 'search-lib';
+import { EndpointResolutoryService } from '../../../core/http/services/endpoint-resolutory.service';
+// import { BuilderFormService, iAction, iSelectOptionEndpoint } from 'projects/search-lib/src/public-api';
 
 @Component({
   selector: 'app-search',
@@ -10,7 +12,9 @@ export class SearchComponent implements OnInit {
 
   collectionItems : BuilderFormService;
   
-  constructor() { }
+  constructor(
+    private endpointResolutory : EndpointResolutoryService
+  ) { }
   
   sendDataAction : iAction = {
     displayName : 'Enviar',
@@ -19,9 +23,10 @@ export class SearchComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.collectionItems = new BuilderFormService();
     this.collectionItems.addTextByDropDown({ id:'campusName', displayName:'Campus',
-      endpoint:<iSelectOptionEndpoint>{url:'http://localhost:3000/campus',text:'name', value:'value'}} );
+      endpoint:<iSelectOptionEndpoint>{url:this.endpointResolutory.buildEndpoint('campus'),text:'name', value:'value'}} );
       
     this.collectionItems.addTextItem({ id:'studentCampusId', displayName:'Id Campus' });
     this.collectionItems.addTextItem({ id:'studentName', displayName:'Nombre' });
@@ -30,7 +35,8 @@ export class SearchComponent implements OnInit {
 
     this.collectionItems.addAction(this.sendDataAction);
     
-    this.collectionItems.addSearchUlr('http://localhost:3000/transactions');
+    let url = this.endpointResolutory.buildEndpoint('transactions');
+    this.collectionItems.addSearchUlr(url);
   }
 
 }

@@ -1,7 +1,12 @@
 import { Injectable } from '@angular/core';
-import { BooleanCheckItem, DateTimeItem, iAction, iBoolean, iDateTimeItem, iNumberItem, 
-  iSelectOption, iTextItem, NumberItem, OptionTextItem, TextItem } from 'projects/search-lib/src/public-api';
 import { BaseItem } from '../../definitions/builders/baseItem.builder';
+import { BooleanCheckItem } from '../../definitions/builders/booleanCheck.builder';
+import { DateTimeItem } from '../../definitions/builders/dateTimeItem.builder';
+import { NumberItem } from '../../definitions/builders/numberItem.builder';
+import { OptionTextItem } from '../../definitions/builders/optionTextItem.builder';
+import { TextItem } from '../../definitions/builders/textItem.builder';
+import { iAction } from '../../definitions/interfaces/iAction.interface';
+import { iBoolean, iDateTimeItem, iNumberItem, iSelectOption, iTextItem } from '../../definitions/interfaces/iItems.interfaces';
 
 @Injectable({
   providedIn: 'root'

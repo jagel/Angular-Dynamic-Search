@@ -2,9 +2,15 @@ import { EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
 import { OnChanges } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { BucketFormService, eFormTypes, EndpointService, iFormSelectionItem, 
-  iSelectedItem, iSelectOption, iSelectOptionEndpoint, LoaderService } 
-  from 'projects/search-lib/src/public-api';
+import { eFormTypes } from '../../../definitions/globals.enums';
+import { iFormSelectionItem } from '../../../definitions/interfaces/iFomSelectionItem.interface';
+import { iGenericSelectOption } from '../../../definitions/interfaces/iGeneric.interfaces';
+import { iSelectOptionEndpoint } from '../../../definitions/interfaces/iItems.interfaces';
+import { iSelectedItem } from '../../../definitions/interfaces/iSelectedItem.interface';
+import { LoaderService } from '../../../services/behavior/loader.service';
+import { BucketFormService } from '../../../services/form/bucket-form.service';
+import { EndpointService } from '../../../services/http/endpoint.service';
+
 
 @Component({
   selector: 'lib-base-input-selector',
@@ -21,7 +27,7 @@ export class BaseInputSelectorComponent implements OnInit, OnChanges {
   formTypes = eFormTypes;
   isLoading: boolean = false;
   
-  collectionToItem : iSelectOption[] = [];
+  collectionToItem : iGenericSelectOption[] = [];
 
   constructor(
     private endpointService : EndpointService,
