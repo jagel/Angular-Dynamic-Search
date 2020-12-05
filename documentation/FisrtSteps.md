@@ -16,4 +16,3 @@ If you have installed Angular 8 as global Angular CLI, or another version beside
 1. In the project's root folder execute the following command the build the library search
  `` npm run build-search-lib ``
  
-

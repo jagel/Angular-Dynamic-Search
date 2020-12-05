@@ -19,6 +19,10 @@
       "search-lib": [
         "dist/search-lib/search-lib",
         "dist/search-lib"
+      ],
+      "auth-lib": [
+        "dist/auth-lib/auth-lib",
+        "dist/auth-lib"
       ]
     }
   },

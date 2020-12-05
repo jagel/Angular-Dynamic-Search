@@ -8,8 +8,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build-search-lib" : "ng build search-lib",
-    "watch-build-search-lib" : "ng build search-lib --watch"
+    "build-search-lib": "ng build search-lib",
+    "watch-build-search-lib": "ng build search-lib --watch",
+    "build-libraries": "ng build search-lib && ng build auth-lib"
   },
   "private": true,
   "dependencies": {
@@ -23,6 +24,9 @@
     "@angular/platform-browser": "~9.1.12",
     "@angular/platform-browser-dynamic": "~9.1.12",
     "@angular/router": "~9.1.12",
+    "@azure/msal-angular": "^1.1.1",
+    "auth-lib": "^1.0.0",
+    "msal": "^1.4.4",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"

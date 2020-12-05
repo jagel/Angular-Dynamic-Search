@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { MsalService } from '@azure/msal-angular';
 import { BuilderFormService, iAction, iSelectOptionEndpoint } from 'search-lib';
 import { EndpointResolutoryService } from '../../../core/http/services/endpoint-resolutory.service';
 // import { BuilderFormService, iAction, iSelectOptionEndpoint } from 'projects/search-lib/src/public-api';
@@ -11,9 +13,11 @@ import { EndpointResolutoryService } from '../../../core/http/services/endpoint-
 export class SearchComponent implements OnInit {
 
   collectionItems : BuilderFormService;
-  
+  profile:any;
   constructor(
-    private endpointResolutory : EndpointResolutoryService
+    private endpointResolutory : EndpointResolutoryService,
+    private authService: MsalService,
+    private http: HttpClient
   ) { }
   
   sendDataAction : iAction = {
@@ -37,6 +41,12 @@ export class SearchComponent implements OnInit {
     
     let url = this.endpointResolutory.buildEndpoint('transactions');
     this.collectionItems.addSearchUlr(url);
+
+
+    this.http.get('https://graph.microsoft.com/v1.0/me')
+      .toPromise().then(profile => {
+        this.profile = profile;
+    });
   }
 
 }
