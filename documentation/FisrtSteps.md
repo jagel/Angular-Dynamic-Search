@@ -24,12 +24,9 @@ Installing Angular CLI 9 as locally CLI version.
 
 
 # Table of Contents
+2. [Understantig distribution](#example2)
 1. [Search Library](search-lib/search-lib.md)
-2. [Example2](#example2)
-3. [Third Example](#third-example)
-4. [Fourth Example](#fourth-examplehttpwwwfourthexamplecom)
+3. [Authentication Library](search-lib/search-lib.md)
+4. [Example App](#fourth-examplehttpwwwfourthexamplecom)
 
-## Example
-## Example2
-## Third Example
-## [Fourth Example](http://www.fourthexample.com) 
+![Drag Racing](assets/img/search-page.png)
