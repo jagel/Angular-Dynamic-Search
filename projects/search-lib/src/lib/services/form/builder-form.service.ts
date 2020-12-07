@@ -55,7 +55,7 @@ export class BuilderFormService {
     }
   }
 
-  addCheckBolean(booleanItem :iBoolean){
+  addCheckBoolean(booleanItem :iBoolean){
     let booleanI = new BooleanCheckItem(booleanItem);
     this.addCollection(booleanI);
   }
