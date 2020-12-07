@@ -1,0 +1,32 @@
+{
+    "Users": [
+        {"id":1,"name":"Jorge","lastName":"Perez","age":24, "location":"MX-AGS", "isActive": true },
+        {"id":2,"name":"Liam","lastName":"Johnson","age":25, "location":"MX-CDMX", "isActive": true },
+        {"id":3,"name":"Noah","lastName":"Williams","age":24, "location":"MX-COL", "isActive": false },
+        {"id":4,"name":"Oliver","lastName":"Brown","age":24, "location":"MX-CDMX", "isActive": false },
+        {"id":5,"name":"William","lastName":"Jones","age":26, "location":"MX-OAX", "isActive": false },
+        {"id":6,"name":"Elijah","lastName":"Garcia","age":24, "location":"MX-BJ", "isActive": false },
+        {"id":7,"name":"James","lastName":"Miller","age":24, "location":"MX-YUC", "isActive": false },
+        {"id":8,"name":"Benjamin","lastName":"Davis","age":22, "location":"MX-OAX", "isActive": true },
+        {"id":9,"name":"Lucas","lastName":"Rodriguez","age":24, "location":"MX-AGS", "isActive": true },
+        {"id":10,"name":"Mason","lastName":"Martinez","age":29, "location":"MX-YUC", "isActive": false },
+        {"id":11,"name":"Ethan","lastName":"Hernandez","age":32, "location":"MX-CDMX", "isActive": true },
+        {"id":12,"name":"Alexander","lastName":"Lopez","age":31, "location":"MX-COL", "isActive": false },
+        {"id":13,"name":"Henry","lastName":"Gonzalez","age":32, "location":"MX-CDMX", "isActive": true },
+        {"id":14,"name":"Jacob","lastName":"Wilson","age":31, "location":"MX-OAX", "isActive": true },
+        {"id":15,"name":"Michael","lastName":"Anderson","age":32, "location":"MX-BJ", "isActive": true },
+        {"id":16,"name":"Daniel","lastName":"Thomas","age":37, "location":"MX-AGS", "isActive": true },
+        {"id":17,"name":"Logan","lastName":"Taylor","age":39, "location":"MX-CDMX", "isActive": false },
+        {"id":18,"name":"Jackson","lastName":"Moore","age":31, "location":"MX-YUC", "isActive": true },
+        {"id":19,"name":"Sebastian","lastName":"Moore","age":30, "location":"MX-CDMX", "isActive": true },
+        {"id":20,"name":"Jack","lastName":"Martin","age":39, "location":"MX-CDMX", "isActive": false }
+    ],
+    "locations":[
+        {"id":"1", "name":"Mexico, Aguascalientes", "code":"MX-AGS"},
+        {"id":"1", "name":"Mexico, Ciudad de Mexico", "code":"MX-CDMX"},
+        {"id":"1", "name":"Mexico, Colima", "code":"MX-COL"},
+        {"id":"1", "name":"Mexico, Oaxaca", "code":"MX-OAX"},
+        {"id":"1", "name":"Mexico, Baja California", "code":"MX-BJ"},
+        {"id":"1", "name":"Mexico, Yucatan", "code":"MX-YUC"}
+    ]
+}
