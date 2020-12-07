@@ -32,7 +32,7 @@ export class SearchComponent implements OnInit {
     this.collectionItems.addNumberItem({id:"age", displayName:"Edad"});
      this.collectionItems.addTextByDropDown({id:"location", displayName:"Ubicacion",
      endpoint:<iSelectOptionEndpoint>{url:this.endpointResolutory.buildEndpoint('locations'),text:'name', value:'code'}});
-    this.collectionItems.addCheckBolean({ id:'isActive', displayName:'Activo' });
+    this.collectionItems.addCheckBoolean({ id:'isActive', displayName:'Activo' });
     
     //Button Actions
     this.collectionItems.addAction(this.sendDataAction);
