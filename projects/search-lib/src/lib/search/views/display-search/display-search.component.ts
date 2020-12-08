@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { iResponseCallBack } from '../../../definitions/interfaces/iSearchCallback.interface';
 import { LoaderService } from '../../../services/behavior/loader.service';
 import { BuilderFormService } from '../../../services/form/builder-form.service';
 
@@ -11,7 +12,11 @@ export class DisplaySearchComponent implements OnInit {
   @Input() formBuilder : BuilderFormService;
 
   isLoading : boolean = false;
-  data :any = {};
+  
+  data :iResponseCallBack = <iResponseCallBack>{
+    tableDataResult:[],
+    totalItems:0
+  };
 
   constructor(
     public loadingService : LoaderService,
@@ -26,7 +31,10 @@ export class DisplaySearchComponent implements OnInit {
     });
   }
 
-  retrieveData(data){
+  retrieveData(data : iResponseCallBack){
     this.data = data;
   }
+
+
+  
 }

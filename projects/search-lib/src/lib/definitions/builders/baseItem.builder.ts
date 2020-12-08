@@ -13,7 +13,7 @@ export abstract class BaseItem implements iBaseItem{
 
     hasCallback: boolean;
 
-    abstract recreateDisplay(value:any): string;
+    abstract recreateDisplay(rowData:any, filedId: string): string;
 
     constructor(options : {
         id ? : string,

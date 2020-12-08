@@ -12,5 +12,5 @@ export interface iBaseItem{
     hasCallback:boolean;
     additionalValidation:any;
 
-    recreateDisplay(value:any): string;
+    recreateDisplay(rowData:any, fieldId:string): string;
 }

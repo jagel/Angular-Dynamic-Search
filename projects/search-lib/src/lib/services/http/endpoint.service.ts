@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { Observable,empty } from 'rxjs';
 import { LoaderService } from '../behavior/loader.service';
 
 @Injectable({
@@ -26,8 +26,7 @@ export class EndpointService {
       }),
       catchError(err => {
         this.loader.disableLoader();
-        console.error(err);
-        return null;
+        throw `POST: Error calling ${err.url} status: ${err.status}, statusText:${err.statusText}`;
       })
     );
   };
@@ -43,8 +42,7 @@ export class EndpointService {
       }),
       catchError(err => {
         this.loader.disableLoader();
-        console.error(err);
-        return null;
+        throw `GET: Error calling ${err.url} status: ${err.status}, statusText:${err.statusText}`;
       })
     );
   };

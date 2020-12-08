@@ -13,6 +13,10 @@ export interface iNumberItem extends iItem{
 export interface iTextItem extends iItem{
 }
 
+export interface iTextItemJoined extends iItem{
+    dataToJoin : string[];
+}
+
 export interface iSelectOption extends iItem{
     endpoint:iSelectOptionEndpoint;
 }

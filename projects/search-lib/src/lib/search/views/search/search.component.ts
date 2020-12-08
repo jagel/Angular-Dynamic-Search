@@ -1,11 +1,12 @@
 import { EventEmitter } from '@angular/core';
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Observable, Subscription } from 'rxjs';
 import { iFormSelectionItem } from '../../../definitions/interfaces/iFomSelectionItem.interface';
+import { iResponseCallBack } from '../../../definitions/interfaces/iSearchCallback.interface';
 import { iSelectedItem } from '../../../definitions/interfaces/iSelectedItem.interface';
 import { BucketFormService } from '../../../services/form/bucket-form.service';
 import { BuilderFormService } from '../../../services/form/builder-form.service';
-import { EndpointService } from '../../../services/http/endpoint.service';
 import { DialogFilterComponent } from '../../components/dialog-filter/dialog-filter.component';
 
 @Component({
@@ -20,18 +21,47 @@ export class SearchComponent implements OnInit {
 
   filterSelection : iFormSelectionItem[] = [];
   selectedCollection : iSelectedItem[] = [];
+  
+  pagination$ : Subscription;
 
   constructor(
     private matDialog: MatDialog,
-    private bucketService : BucketFormService,
-    private endpointService : EndpointService
+    private bucketService : BucketFormService
     ) { }
 
   ngOnInit() {
+    this.initializePaginationObserver();
+    this.initializeFilterData();
+  }
+
+  initializePaginationObserver(){
+    let initialize= true;
+
+    this.bucketService.initializePagination(this.formBuilder.searchResponse.pageSize);
+    
+    this.pagination$ = this.bucketService.changerPage().subscribe(pagination => {
+      if(!initialize){
+        this.searchData(pagination.page, pagination.pageSize);
+      }else{
+        initialize = false;
+      }      
+    });
+  }
+  
+  initializeFilterData(){
+    const sortingData = (a, b) => {
+      if(a.displayName < b.displayName) { return -1; }
+      if(a.displayName > b.displayName) { return 1; }
+      return 0;
+    }
+
     this.filterSelection = this.formBuilder.collectionItems
       .filter(x=>x.enableToBeFiltered)
-      .map(item => Object.assign({},item,{selected:false} ));
+      .map(item => Object.assign({},item,{selected:false} ))
+      .sort(sortingData);
   }
+
+ 
 
   openDialog(selected :iSelectedItem = null){
     let dialog = this.matDialog.open(DialogFilterComponent, {
@@ -63,14 +93,12 @@ export class SearchComponent implements OnInit {
     this.selectedCollection.splice(index,1);
   }
 
-  searchData(){
-    let data = this.bucketService.buildFiltersObject(this.selectedCollection); //TODO: send to post method
-    
-    this.dataResult.emit({});
-    
-    this.endpointService
-      .get(this.formBuilder.urlConnection)
-      .subscribe(result => this.dataResult.emit(result));
+  searchData(page:number = 1, pageSize?){
+    let _pageSize = pageSize || this.formBuilder.searchResponse.pageSize; 
+    this.bucketService.buildCallback(this.selectedCollection,this.formBuilder.searchResponse,page,_pageSize).subscribe(response => {
+      response.page = page;
+      this.dataResult.emit(response);      
+    }).unsubscribe;    
   }
 
   clearFilter(){

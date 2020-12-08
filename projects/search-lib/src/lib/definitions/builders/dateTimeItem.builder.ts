@@ -19,7 +19,8 @@ export class DateTimeItem extends BaseItem{
         });
     }
 
-    recreateDisplay(value: string): string {
+    recreateDisplay(rowData:any, filedId: string): string {
+        let value = rowData[filedId];
         let result=  new DatePipe('en-US').transform(value,'MM/dd/yyyy, h:mm a')
         return result;
     }

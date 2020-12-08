@@ -17,7 +17,8 @@ export class OptionTextItem extends BaseItem{
         });
     }
 
-    recreateDisplay(value: string): string {
+    recreateDisplay(rowData:any, filedId: string): string {
+        let value = rowData[filedId];
         return value;
     }
 

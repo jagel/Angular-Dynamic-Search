@@ -5,8 +5,10 @@ import { DateTimeItem } from '../../definitions/builders/dateTimeItem.builder';
 import { NumberItem } from '../../definitions/builders/numberItem.builder';
 import { OptionTextItem } from '../../definitions/builders/optionTextItem.builder';
 import { TextItem } from '../../definitions/builders/textItem.builder';
+import { TextItemJoined } from '../../definitions/builders/textItemJoined';
 import { iAction } from '../../definitions/interfaces/iAction.interface';
-import { iBoolean, iDateTimeItem, iNumberItem, iSelectOption, iTextItem } from '../../definitions/interfaces/iItems.interfaces';
+import { iBoolean, iDateTimeItem, iNumberItem, iSelectOption, iTextItem, iTextItemJoined } from '../../definitions/interfaces/iItems.interfaces';
+import { iSearchCallback } from '../../definitions/interfaces/iSearchCallback.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -18,10 +20,11 @@ export class BuilderFormService {
   enableActions : boolean = true;
   actionCollection : iAction[] = [];
   
-  urlConnection : string;
+  searchResponse : iSearchCallback
   
   constructor() { }
 
+  // --------------------------------- Fields
 
   addTextItem(textItem: iTextItem){
     let textI = new TextItem(textItem);
@@ -65,6 +68,13 @@ export class BuilderFormService {
     this.addCollection(booleanI);
   }
 
+  addTextByMultiplesFields(textItemJoined: iTextItemJoined){
+    let booleanI = new TextItemJoined(textItemJoined);
+    this.addCollection(booleanI);
+  }
+
+  // --------------------------------- Actions
+
   disableActions(){
     this.enableActions = false;
     if(this.actionCollection.length>0)
@@ -76,11 +86,7 @@ export class BuilderFormService {
     this.actionCollection.push(action);
   }
 
-  addSearchUlr(url :string){
-    this.urlConnection = url;
-  }
-
-
+  // --------------------------------- Configuration
   private addCollection(itemBuilded :BaseItem){
     this.collectionItems.push(itemBuilded);
     this.collectionTableItems.push(itemBuilded);

@@ -15,9 +15,9 @@ export class BooleanCheckItem extends BaseItem{
         });
     }
     
-    recreateDisplay(value: boolean): string {
-        let icon = value ? 'done_outline' : 'close';
-        let display = `<span class="material-icons">${icon}</span>`;
+    recreateDisplay(rowData:any, filedId: string): string {
+        let icon = <boolean>rowData[filedId] ? 'check' : 'close';
+        let display = `<span class="dyn-icon material-icons">${icon}</span>`;
         return display;
     }
 

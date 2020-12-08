@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>Agregar filtro</h2>
+<h2 mat-dialog-title>{{update ? 'Actualizar' : 'Agregar'}} filtro</h2>
 
 <mat-dialog-content class="dialog-content">
     <section>
@@ -22,6 +22,8 @@
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
-  <button mat-button (click)="closeDialog()">Cancelar</button>
-  <button mat-button (click)="addFilter()" [disabled]="!this.valueData">{{update ? 'Actualizar' : 'Agregar'}}</button>
+  <button mat-raised-button (click)="closeDialog()">Cancelar</button>
+  <button mat-raised-button color="warn" (click)="addFilter()" [disabled]="!this.valueData">
+    {{update ? 'Actualizar' : 'Agregar'}}
+  </button>
 </mat-dialog-actions>
