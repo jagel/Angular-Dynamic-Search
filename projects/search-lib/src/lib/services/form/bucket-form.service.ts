@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { iSearchCallback } from 'dist/search-lib/lib/definitions/interfaces/iSearchCallback.interface';
 import { iFormSelectionItem } from '../../definitions/interfaces/iFomSelectionItem.interface';
 import { iGenericSelectOption } from '../../definitions/interfaces/iGeneric.interfaces';
 import { iSelectOptionEndpoint } from '../../definitions/interfaces/iItems.interfaces';
@@ -7,7 +6,7 @@ import { iSelectedItem } from '../../definitions/interfaces/iSelectedItem.interf
 import { EndpointService } from '../http/endpoint.service';
 import { map } from 'rxjs/operators';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { iPaginator, iResponseCallBack } from '../../definitions/interfaces/iSearchCallback.interface';
+import { iPaginator, iResponseCallBack, iSearchCallback } from '../../definitions/interfaces/iSearchCallback.interface';
 
 @Injectable({
   providedIn: 'root'

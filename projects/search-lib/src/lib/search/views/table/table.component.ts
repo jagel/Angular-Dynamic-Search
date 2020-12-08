@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { BaseItem } from '../../../definitions/builders/baseItem.builder';
 import { LoaderService } from '../../../services/behavior/loader.service';
@@ -6,13 +6,15 @@ import { BuilderFormService } from '../../../services/form/builder-form.service'
 import { iResponseCallBack } from '../../../definitions/interfaces/iSearchCallback.interface';
 import { BucketFormService } from '../../../services/form/bucket-form.service';
 import { MatPaginator } from '@angular/material/paginator';
+import { Subscription } from 'rxjs';
+import { OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'lib-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss']
 })
-export class TableComponent implements OnInit {
+export class TableComponent implements OnInit, OnChanges, OnDestroy {
   @ViewChild(MatPaginator) matPaginator: MatPaginator;
 
   @Input() formBuilder : BuilderFormService;
@@ -23,7 +25,9 @@ export class TableComponent implements OnInit {
   collectionItems : BaseItem[];
   isLoading : boolean;
 
-  
+  displayedColumns : string[] = []
+  $loading: Subscription ;
+
   constructor(
     private loadingService : LoaderService,
     private bucketForm : BucketFormService
@@ -31,15 +35,8 @@ export class TableComponent implements OnInit {
     
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    let _data : iResponseCallBack = this.data;
-    this.dataSource = new MatTableDataSource<Object>(_data.tableDataResult);
-    if(_data.page === 1 && this.matPaginator)
-      this.matPaginator.firstPage();
-  }
-
   ngOnInit() {
-    this.loadingService.loading().subscribe(response => {
+    this.$loading = this.loadingService.loading().subscribe(response => {
       if(response)
         this.isLoading = response;
       else{
@@ -53,7 +50,17 @@ export class TableComponent implements OnInit {
     this.buildColumnsNames();
   }
 
-  displayedColumns : string[] = []
+  ngOnChanges(changes: SimpleChanges): void {
+    let _data : iResponseCallBack = this.data;
+    this.dataSource = new MatTableDataSource<Object>(_data.tableDataResult);
+    if(_data.page === 1 && this.matPaginator)
+      this.matPaginator.firstPage();
+  }
+
+  ngOnDestroy(): void {
+    this.$loading.unsubscribe();
+  }
+
 
   buildColumnsNames(){
     this.displayedColumns = this.collectionItems

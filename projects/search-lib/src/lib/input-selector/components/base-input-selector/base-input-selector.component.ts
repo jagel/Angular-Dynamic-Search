@@ -1,7 +1,8 @@
-import { EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
+import { EventEmitter, Input, OnDestroy, Output, SimpleChanges } from '@angular/core';
 import { OnChanges } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { eFormTypes } from '../../../definitions/globals.enums';
 import { iFormSelectionItem } from '../../../definitions/interfaces/iFomSelectionItem.interface';
 import { iGenericSelectOption } from '../../../definitions/interfaces/iGeneric.interfaces';
@@ -17,7 +18,7 @@ import { EndpointService } from '../../../services/http/endpoint.service';
   templateUrl: './base-input-selector.component.html',
   styleUrls: ['./base-input-selector.component.scss']
 })
-export class BaseInputSelectorComponent implements OnInit, OnChanges {
+export class BaseInputSelectorComponent implements OnInit, OnChanges, OnDestroy {
 
   @Input() selectedItem : iFormSelectionItem;
   @Input() value : any;
@@ -26,6 +27,7 @@ export class BaseInputSelectorComponent implements OnInit, OnChanges {
   formItem : FormControl;
   formTypes = eFormTypes;
   isLoading: boolean = false;
+  $loading: Subscription;
   
   collectionToItem : iGenericSelectOption[] = [];
 
@@ -36,7 +38,7 @@ export class BaseInputSelectorComponent implements OnInit, OnChanges {
   ) { }
 
   ngOnInit(): void {
-    this.loadingService.loading().subscribe(response => {
+    this.$loading =this.loadingService.loading().subscribe(response => {
       if(response)
       this.isLoading = response;
     else{
@@ -54,6 +56,10 @@ export class BaseInputSelectorComponent implements OnInit, OnChanges {
       }
       this.initializeFormControl();        
     }
+  }
+
+  ngOnDestroy(): void {
+    this.$loading.unsubscribe();
   }
 
   initializeFormControl(){

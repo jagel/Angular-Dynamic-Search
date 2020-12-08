@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { iResponseCallBack } from '../../../definitions/interfaces/iSearchCallback.interface';
 import { LoaderService } from '../../../services/behavior/loader.service';
 import { BuilderFormService } from '../../../services/form/builder-form.service';
@@ -8,10 +9,11 @@ import { BuilderFormService } from '../../../services/form/builder-form.service'
   templateUrl: './display-search.component.html',
   styleUrls: ['./display-search.component.scss']
 })
-export class DisplaySearchComponent implements OnInit {
+export class DisplaySearchComponent implements OnInit, OnDestroy {
   @Input() formBuilder : BuilderFormService;
 
   isLoading : boolean = false;
+  $loading : Subscription;
   
   data :iResponseCallBack = <iResponseCallBack>{
     tableDataResult:[],
@@ -21,14 +23,17 @@ export class DisplaySearchComponent implements OnInit {
   constructor(
     public loadingService : LoaderService,
   ) { }
-
-
+  
   ngOnInit() {
-    this.loadingService.loading().subscribe(response => {
+    this.$loading = this.loadingService.loading().subscribe(response => {
       setTimeout(() => {
         this.isLoading = response;
       },10);
     });
+  }
+
+  ngOnDestroy(): void {
+    this.$loading.unsubscribe();
   }
 
   retrieveData(data : iResponseCallBack){
