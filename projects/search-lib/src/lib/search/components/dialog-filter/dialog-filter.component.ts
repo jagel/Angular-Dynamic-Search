@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { iFormSelectionItem } from '../../../definitions/interfaces/iFomSelectionItem.interface';
 import { iSelectedItem } from '../../../definitions/interfaces/iSelectedItem.interface';
@@ -14,14 +14,20 @@ export class DialogFilterComponent implements OnInit {
   optionSelected : iFormSelectionItem;
 
   valueData : iSelectedItem;
+  
+  filterForm:FormGroup;
   selectOption : FormControl;
+  valueFilter : FormControl;
+  
   valueSelected: any;
 
   update:boolean;
 
+
   constructor(
+    @Inject(MAT_DIALOG_DATA) public data:{filterData:iFormSelectionItem[], selected:iSelectedItem},
       private dialogRef: MatDialogRef<DialogFilterComponent>,
-      @Inject(MAT_DIALOG_DATA) public data:{filterData:iFormSelectionItem[], selected:iSelectedItem}
+      private fb : FormBuilder 
      ) { }
 
   ngOnInit() {
@@ -30,16 +36,24 @@ export class DialogFilterComponent implements OnInit {
     {
       this.update = true;
       this.optionSelected = this.data.filterData.find(x=>x.id ==this.data.selected.id);
-      this.selectOption = new FormControl(this.optionSelected);
+      
+      this.selectOption = new FormControl(this.optionSelected, Validators.required);
+      this.valueFilter = new FormControl(this.valueData, Validators.required);
+
       this.valueSelected = this.data.selected.value;
       this.data.filterData = [this.optionSelected];
     }
     else{
-      this.selectOption = new FormControl('');
+      this.selectOption = new FormControl('',Validators.required);
+      this.valueFilter = new FormControl('', Validators.required);
       this.data.filterData = this.data.filterData.filter(x=>!x.selected)
-
     }
 
+    this.filterForm = this.fb.group({
+      selectOption: this.selectOption,
+      valueFilter: this.valueFilter
+    });
+    
     this.selectOption.valueChanges.subscribe(selected => {
       this.valueData = null;
       this.optionSelected = selected;
@@ -57,6 +71,7 @@ export class DialogFilterComponent implements OnInit {
 
   setSelectedValue(data : iSelectedItem){
     this.valueData = data;
+    this.valueFilter.setValue(data.value);
   }
 
 }

@@ -103,7 +103,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.bucketService.buildCallback(this.selectedCollection,this.formBuilder.searchResponse,page,_pageSize).subscribe(response => {
       response.page = page;
       this.dataResult.emit(response);      
-    }).unsubscribe;    
+    });
   }
 
   clearFilter(){
