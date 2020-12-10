@@ -12,10 +12,10 @@ export const environment = {
 
 export const ADConfigurationVariables = <AuthMSALData>{
   auth: <AuthMSAL_AD_Data>{
-    clientId: '<production-client-id>',
-    authority: '<production-authority>',
-    redirectUri: '<production-redirect-uri>',
-    postLogoutRedirectUri: '<production-post-redirect-uri>',
+    clientId: '<client-id>',
+    authority: '<authority>',
+    redirectUri: '<redirect-uri>',
+    postLogoutRedirectUri: '<post-redirect-uri>',
   },
   internals: <AuthMSAL_Internals>{
     logoutNavigate: 'home'

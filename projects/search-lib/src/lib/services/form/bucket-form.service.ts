@@ -7,6 +7,8 @@ import { EndpointService } from '../http/endpoint.service';
 import { map } from 'rxjs/operators';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { iPaginator, iResponseCallBack, iSearchCallback } from '../../definitions/interfaces/iSearchCallback.interface';
+import { Internals } from '../../definitions/globals.enums';
+import { iSearchQuery } from '../../definitions/interfaces/iStorage.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -40,16 +42,21 @@ export class BucketFormService {
     filterItems : iSelectedItem[], 
     callBackConfig : iSearchCallback,
     page : number,
-    pageSize) : Observable<iResponseCallBack> {
+    pageSize: number) : Observable<iResponseCallBack> {
     let data = this.buildFiltersObject(filterItems);
 
     let url = callBackConfig.url;
     url = url.replace(`{${callBackConfig.pageId}}`, page.toString());
     url = url.replace(`{${callBackConfig.pageSizeId}}`, `${pageSize}`);
 
+    let tmpSearch = <iSearchQuery>{filterItems:filterItems, page:page, pageSize:pageSize };
+    localStorage.setItem(Internals.queryStorage, JSON.stringify(tmpSearch));
+
     let endpointCallback = this.endpointService
-    .post(url,data)
-    .pipe(map(callBackConfig.mapPipe));
+      .post(url,data)
+      .pipe(
+        map(callBackConfig.mapPipe)
+      );
 
     return endpointCallback;
   }
@@ -68,5 +75,5 @@ export class BucketFormService {
       return response;
     }));
   }
-  
+
 }

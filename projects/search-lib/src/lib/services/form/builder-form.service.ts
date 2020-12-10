@@ -6,9 +6,12 @@ import { NumberItem } from '../../definitions/builders/numberItem.builder';
 import { OptionTextItem } from '../../definitions/builders/optionTextItem.builder';
 import { TextItem } from '../../definitions/builders/textItem.builder';
 import { TextItemJoined } from '../../definitions/builders/textItemJoined';
+import { Internals } from '../../definitions/globals.enums';
 import { iAction } from '../../definitions/interfaces/iAction.interface';
 import { iBoolean, iDateTimeItem, iNumberItem, iSelectOption, iTextItem, iTextItemJoined } from '../../definitions/interfaces/iItems.interfaces';
 import { iSearchCallback } from '../../definitions/interfaces/iSearchCallback.interface';
+import { iSearchQuery } from '../../definitions/interfaces/iStorage.interface';
+import { BucketFormService } from './bucket-form.service';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +25,9 @@ export class BuilderFormService {
   
   searchResponse : iSearchCallback
   
-  constructor() { }
+  constructor(
+    private buckerService:BucketFormService
+  ) { }
 
   // --------------------------------- Fields
 
@@ -86,10 +91,19 @@ export class BuilderFormService {
     this.actionCollection.push(action);
   }
 
+  sendLastQuery(){
+    let tmpSearch = localStorage.getItem(Internals.queryStorage);
+    if(tmpSearch){
+      let responseData : iSearchQuery = <iSearchQuery>JSON.parse(tmpSearch);
+      this.buckerService.emitChangePage(responseData.page,responseData.pageSize);
+    }
+  }
+
   // --------------------------------- Configuration
   private addCollection(itemBuilded :BaseItem){
     this.collectionItems.push(itemBuilded);
     this.collectionTableItems.push(itemBuilded);
   }
+
 
 }

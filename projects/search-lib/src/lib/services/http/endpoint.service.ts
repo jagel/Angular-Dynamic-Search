@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
-import { Observable,empty } from 'rxjs';
+import { Observable } from 'rxjs';
 import { LoaderService } from '../behavior/loader.service';
+import { throwError } from 'rxjs/internal/observable/throwError';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +13,8 @@ export class EndpointService {
 
   constructor(
     private http: HttpClient,
-    private loader : LoaderService
+    private loader : LoaderService,
+    private _snackBar: MatSnackBar
   ) {     
   }
 
@@ -40,11 +43,26 @@ export class EndpointService {
         this.loader.disableLoader();
         return response;
       }),
-      catchError(err => {
-        this.loader.disableLoader();
-        throw `GET: Error calling ${err.url} status: ${err.status}, statusText:${err.statusText}`;
-      })
+      catchError(this.handleError)
     );
   };
+
+
+  private handleError(error: HttpErrorResponse) {
+    let data = {completed: error.error.isStatusCodeSuccess}
+    if(!error.error.isStatusCodeSuccess){
+      this.showSnackBarMessage(error.error.message);
+    }
+    // Return an observable with a user-facing error message.
+    return throwError(data);
+  }
+
+  private showSnackBarMessage(message : string){
+    this._snackBar.open(message,'Cerrar',{
+      duration:10000,
+      horizontalPosition:  'center',
+      verticalPosition: 'top',
+    });
+  }
   
 }

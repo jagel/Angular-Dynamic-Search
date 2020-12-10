@@ -3,6 +3,7 @@ import { Component, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { iFormSelectionItem } from '../../../definitions/interfaces/iFomSelectionItem.interface';
+import { iResponseCallBack } from '../../../definitions/interfaces/iSearchCallback.interface';
 import { iSelectedItem } from '../../../definitions/interfaces/iSelectedItem.interface';
 import { BucketFormService } from '../../../services/form/bucket-form.service';
 import { BuilderFormService } from '../../../services/form/builder-form.service';
@@ -100,9 +101,14 @@ export class SearchComponent implements OnInit, OnDestroy {
     let _pageSize = pageSize || this.formBuilder.searchResponse.pageSize;
     this.formBuilder.searchResponse.pageSize = _pageSize;
 
-    this.bucketService.buildCallback(this.selectedCollection,this.formBuilder.searchResponse,page,_pageSize).subscribe(response => {
+    this.bucketService.buildCallback(this.selectedCollection,this.formBuilder.searchResponse,page,_pageSize)
+    .subscribe(response => {
       response.page = page;
       this.dataResult.emit(response);      
+    }, error => {
+        this.dataResult.emit(<iResponseCallBack>{
+          tableDataResult:[],totalItems:0,page:1
+        });
     });
   }
 
